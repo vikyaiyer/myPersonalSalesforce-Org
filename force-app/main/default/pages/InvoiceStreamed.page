@@ -1,0 +1,31 @@
+<apex:page standardController="Invoice_Statement__c" recordSetVar="invoices">
+    <!-- Mandatory file loads -->
+    <apex:includeScript value="{!URLFOR($Resource.StreamingApiFiles, '/cometd.js')}"/>    
+    <apex:includeScript value="{!URLFOR($Resource.StreamingApiFiles, '/jquery-1.5.1.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.StreamingApiFiles, '/json2.js')}"/>
+    <apex:includeScript value="{!URLFOR($Resource.StreamingApiFiles, '/jquery.cometd.js')}"/>   
+	
+    <script type="text/javascript">
+        (function($){
+            $(document).ready(function() {
+                //Initializing cometd protocol setup requires salesforce url and session id
+                $.cometd.init({
+                    url: window.location.protocol+'//'+window.location.hostname+'/cometd/24.0/',
+                    requestHeaders: { Authorization: 'OAuth {!$Api.Session_ID}'}
+                });
+                //Subscribing to PushTopic change configs 
+                $.cometd.subscribe('/topic/InvoiceStatementUpdates', function(result) {
+                    var recId = result.data.sobject.Id;
+                    $('#'+recId).text(result.data.sobject.Description__c);
+                });          
+            })})(jQuery)
+        
+        function disconnect() {
+            $.cometd.disconnect();
+        }
+    	window.onbeforeunload = disconnect;        
+    </script>
+    <apex:dataList var="inv" value="{!invoices}" type="1">
+        <strong>{!inv.name} -- </strong><label id="{!inv.Id}"> {!inv.Description__c} </label>
+    </apex:dataList>
+</apex:page>

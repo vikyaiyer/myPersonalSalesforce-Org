@@ -1,0 +1,22 @@
+<aura:component>
+    <lightning:card footer="Never Settle" title="Vignesh Aiyer">
+        <aura:set attribute="title">
+            <lightning:icon iconName="standard:bot" size="medium" />
+            Vignesh Aiyer  
+        </aura:set>
+         <p class="slds-p-horizontal_small">
+              Salesforce Developer
+         </p>
+        <aura:set attribute="footer">
+            <p class="slds-p-around_small">
+                <lightning:formattedEmail class="slds-p-horizontal_xx-small" value="vikyaiyer1997@gmail.com" label="Drop me a mail" />
+            </p>
+            <a class="slds-p-horizontal_xx-small" target="_blank" href="https://github.com/vikyaiyer"><lightning:badge label="Github"/></a>
+            <a class="slds-p-horizontal_xx-small" target="_blank" href="#"><lightning:badge label="Trailhead"/></a>
+            <a class="slds-p-horizontal_xx-small" target="_blank" href="#"><lightning:badge label="Never Settle - OnePlus"/></a>           
+        </aura:set>
+        
+   
+    </lightning:card>
+    <!--lightning:button label="Dabao be Mujhe" onclick="{!c.pleasePressMe}" /-->
+</aura:component>

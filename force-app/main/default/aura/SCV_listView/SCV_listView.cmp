@@ -1,0 +1,33 @@
+<aura:component controller="SCV_listViewController" implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+	<aura:attribute type="String" name="SCV_listSelect" />
+    <aura:attribute type="Map" name="uiControls" default="{lstViewTypes: []}"/>
+    <aura:handler name="init" value="{!this}" action="{!c.initListViewSCV}" />
+    <lightning:card title="List View">
+        <p class="slds-p-horizontal_medium"> 
+            <div class ="slds-wrap slda-grid">
+                <div class="slds-size_1-of-1 slds-medium-size_1-of-2 slds-large-size_1-of-2 slds-p-around_x-small">
+                    <lightning:select name="SCV_listView"                                       
+                                      label="View:"
+                                      value="{!v.SCV_listSelect}"
+                                      onchange="{!c.changeListView}">
+						<option value="">--None--</option>                        
+                        <aura:iteration items="{!v.uiControls.lstViewTypes}" var="viewType">
+                            <option value="{!viewType.DeveloperName}">{!viewType.Name}</option>
+                        </aura:iteration>   
+                        
+                    </lightning:select>
+                </div>
+            </div>
+            
+            <div aura:id="listViewAccounts">
+                <lightning:listView objectApiName="Account"
+                                    listName="{!v.SCV_listSelect}"
+                                    rows="5" 
+                                    showActionBar="false" 
+                                    enableInlineEdit="true"
+                                    showRowLevelActions="false" />
+            </div>
+        </p>
+    </lightning:card>
+    
+</aura:component>

@@ -1,0 +1,20 @@
+<apex:page >
+    
+    <apex:includeLightning />
+   
+    <div id="lightning" />
+
+    <script>
+        $Lightning.use("c:myProfileLCVF", function() {
+          $Lightning.createComponent("c:myProfileLC",
+              {},
+              "lightning",
+              function(cmp) {
+                
+              }
+          );
+        });
+    </script>
+
+    
+</apex:page>

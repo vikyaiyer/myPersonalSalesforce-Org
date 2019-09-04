@@ -1,0 +1,10 @@
+<aura:component implements="flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId">
+    <article class="slds-card slds-p-top_small">
+        <span class="slds-p-left_small slds-card__header-title slds-truncate">
+            <strong>Available Prompts</strong>
+        </span>
+        <div class="prompt-container slds-p-top_small">
+            <lightning:nextBestActions strategyName="Mobile_Offers" recordId="0016F00002SL4YFQA1" />
+        </div>
+    </article>
+</aura:component>
